@@ -15,6 +15,17 @@ class CreateHealthRecordsTable extends Migration
     {
         Schema::create('health_records', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('diagnosis');
+            $table->string('treatment');
+            $table->date('date');
+            $table->unsignedInteger('patientID');
+            $table->foreign('patientID')
+            ->references('id')->on('patients')
+            ->onDelete('cascade');
+            $table->unsignedInteger('doctorID');
+            $table->foreign('doctorID')
+            ->references('id')->on('doctors')
+            ->onDelete('cascade');
             $table->timestamps();
         });
     }
