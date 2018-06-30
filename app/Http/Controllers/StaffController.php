@@ -14,7 +14,8 @@ class StaffController extends Controller
      */
     public function index()
     {
-        //
+        $staffs = Staff::all();
+        return view('staff.index', compact('staffs'));
     }
 
     /**
@@ -24,7 +25,7 @@ class StaffController extends Controller
      */
     public function create()
     {
-        //
+        return view('staff.create');
     }
 
     /**
@@ -35,7 +36,30 @@ class StaffController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'firstname' => 'required',
+            'lastname' => 'required',
+            'gender' => 'required',
+            'position' => 'required',
+            'contactNumber' => 'required',
+            'address' => 'required',
+            'username' => 'required',
+            'password' => 'required|required_with:password_confirmation|string|confirmed',
+        ]);
+
+        $staff = new Staff;
+        $staff->staffFname = $request->firstname;
+        $staff->staffLname = $request->lastname;
+        $staff->gender = $request->gender;
+        $staff->position = $request->position;
+        $staff->contactNumber = $request->contactNumber;
+        $staff->address = $request->address;
+        $staff->username = $request->username;
+        $staff->password = $request->password;
+
+        $staff->save();
+
+        return redirect('staff');
     }
 
     /**
@@ -57,7 +81,7 @@ class StaffController extends Controller
      */
     public function edit(Staff $staff)
     {
-        //
+        return view('staff.edit', compact('staff'));
     }
 
     /**
@@ -69,7 +93,25 @@ class StaffController extends Controller
      */
     public function update(Request $request, Staff $staff)
     {
-        //
+        $this->validate($request, [
+            'firstname' => 'required',
+            'lastname' => 'required',
+            'gender' => 'required',
+            'position' => 'required',
+            'contactNumber' => 'required',
+            'address' => 'required',
+        ]);
+
+        $staff->staffFname = $request->firstname;
+        $staff->staffLname = $request->lastname;
+        $staff->gender = $request->gender;
+        $staff->position = $request->position;
+        $staff->contactNumber = $request->contactNumber;
+        $staff->address = $request->address;
+
+        $staff->save();
+
+        return redirect('staff');
     }
 
     /**
@@ -80,6 +122,8 @@ class StaffController extends Controller
      */
     public function destroy(Staff $staff)
     {
-        //
+        $staff->delete();
+
+        return redirect('staff');
     }
 }
