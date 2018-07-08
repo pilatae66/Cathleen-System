@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\User;
+use App\Staff;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -49,8 +49,12 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
+            'staffFname' => 'required|string|max:255',
+            'staffLname' => 'required|string|max:255',
+            'position' => 'required|string|max:255',
+            'contactNumber' => 'required|string|max:255',
+            'address' => 'required|string|max:255',
+            'username' => 'required|string|max:255|unique:staff',
             'password' => 'required|string|min:6|confirmed',
         ]);
     }
@@ -59,13 +63,18 @@ class RegisterController extends Controller
      * Create a new user instance after a valid registration.
      *
      * @param  array  $data
-     * @return \App\User
+     * @return \App\Staff
      */
     protected function create(array $data)
     {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
+        return Staff::create([
+            'staffFname' => $data['staffFname'],
+            'staffLname' => $data['staffLname'],
+            'position' => $data['position'],
+            'gender' => $data['gender'],
+            'address' => $data['address'],
+            'contactNumber' => $data['contactNumber'],
+            'username' => $data['username'],
             'password' => Hash::make($data['password']),
         ]);
     }
