@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('login');
 });
 
 Auth::routes();
@@ -22,3 +22,9 @@ Route::get('/home', 'HomeController@index')->name('home');
 //Staff routes
 
 Route::resource('staff', 'StaffController');
+
+Route::resource('patient', 'PatientController');
+
+Route::resource('doctor', 'DoctorController');
+
+Route::get('doctor/{id}/patientList', 'DoctorController@getPatients')->name('doctor.list');

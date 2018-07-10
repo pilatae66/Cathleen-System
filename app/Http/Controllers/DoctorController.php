@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Doctor;
+use App\Patient;
 use Illuminate\Http\Request;
 
 class DoctorController extends Controller
@@ -81,5 +82,12 @@ class DoctorController extends Controller
     public function destroy(Doctor $doctor)
     {
         //
+    }
+
+    public function getPatients($id)
+    {
+        $patientList = Patient::where('docID', $id)->get();
+
+        return view('doctor.index', compact('patientList'));
     }
 }
