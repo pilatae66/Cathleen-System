@@ -126,4 +126,9 @@ class StaffController extends Controller
 
         return redirect('staff');
     }
+
+    public function showDashboard()
+    {
+        return view('staff.dashboard');
+    }
 }

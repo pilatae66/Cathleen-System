@@ -17,6 +17,12 @@ Route::get('/', function () {
 
 Auth::routes();
 
+//Route for doctor login
+
+Route::get('/doctor/login', 'Doctor\LoginController@showLoginForm')->name('doctor.login');
+
+Route::post('/doctor/login', 'Doctor\LoginController@login')->name('doctor.login');
+
 Route::get('/home', 'HomeController@index')->name('home');
 
 //Staff routes
@@ -27,4 +33,11 @@ Route::resource('patient', 'PatientController');
 
 Route::resource('doctor', 'DoctorController');
 
+Route::get('doc/dashboard', 'DoctorController@showDashboard')->name('doctor.dashboard');
+
 Route::get('doctor/{id}/patientList', 'DoctorController@getPatients')->name('doctor.list');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+

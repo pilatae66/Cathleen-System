@@ -8,6 +8,11 @@ use Illuminate\Http\Request;
 
 class DoctorController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth:doctor');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -89,5 +94,10 @@ class DoctorController extends Controller
         $patientList = Patient::where('docID', $id)->get();
 
         return view('doctor.index', compact('patientList'));
+    }
+
+    public function showDashboard()
+    {
+        return view('doctor.dashboard');
     }
 }
