@@ -12,7 +12,7 @@ class Patient extends Model
 
     public function getFullNameAttribute()
     {
-        return $this->firstName . " " . $this->lastName;
+        return $this->firstName . " " . $this->middleName. " " . $this->lastname;
     }
 
     public function doctor()

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Doctor;
 use App\Patient;
+use App\HealthRecord;
+use Auth;
 use Illuminate\Http\Request;
 
 class DoctorController extends Controller
@@ -99,5 +101,13 @@ class DoctorController extends Controller
     public function showDashboard()
     {
         return view('doctor.dashboard');
+    }
+
+    public function showPatient($id)
+    {
+        $records = HealthRecord::where('patientID', $id)->get();
+        $patient = Patient::where('id', $id)->first();
+
+        return view('doctor.show', compact('patient', 'records'));
     }
 }

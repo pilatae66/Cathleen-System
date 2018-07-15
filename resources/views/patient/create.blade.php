@@ -7,7 +7,7 @@ Staff
 <li class="active">Staff</li>
 @endsection
 @section('content')
-<div class="content">
+<section class="content">
 	<div class="row">
 		<div class="col-md-10 col-md-offset-1">
 			<div class="box box-primary">
@@ -108,9 +108,9 @@ Staff
 									<label for="docID">Doctor</label>
 									<select name="docID" id="docID" class="form-control">
 										<option disabled hidden selected>Choose Doctor.</option>
-                                        @foreach ($doctors as $doctor)
-                                            <option value="{{ $doctor->id }}">Dr. {{ $doctor->doctorLname }}</option>
-                                        @endforeach
+										@foreach ($doctors as $doctor)
+										<option value="{{ $doctor->id }}">Dr. {{ $doctor->doctorLname }}</option>
+										@endforeach
 									</select>
 									@if ( $errors->has('docID') )
 									<span class="help-block">{{ $errors->first('docID') }}</span>
@@ -126,5 +126,5 @@ Staff
 			</div>
 		</div>
 	</div>
-</div>
+</section>
 @endsection

@@ -17,6 +17,7 @@ class CreateHealthRecordsTable extends Migration
             $table->increments('id');
             $table->string('diagnosis');
             $table->string('treatment');
+            $table->string('status');
             $table->date('date');
             $table->unsignedInteger('patientID');
             $table->foreign('patientID')

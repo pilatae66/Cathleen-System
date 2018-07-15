@@ -37,6 +37,8 @@ Route::get('doc/dashboard', 'DoctorController@showDashboard')->name('doctor.dash
 
 Route::get('doctor/{id}/patientList', 'DoctorController@getPatients')->name('doctor.list');
 
+Route::get('doctor/{id}/patientProfile', 'DoctorController@showPatient')->name('doctor.showPatient');
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

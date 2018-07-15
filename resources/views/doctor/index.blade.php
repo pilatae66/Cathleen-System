@@ -29,7 +29,7 @@ Patient List
 						<tbody>
                             @forelse ($patientList as $list)
 							<tr>
-                                <td><a class="text-black" href="{{ route('patient.show', $list->id) }}">{{ $list->fullName }}</a></td>
+                                <td><a class="text-black" href="{{ route('doctor.showPatient', $list->id) }}">{{ $list->fullName }}</a></td>
                                 <td>{{ $list->symptoms }}</td>
                                 <td>
                                     <a class="btn btn-info btn-sm" href="{{ route('patient.edit', $list->id) }}"><i class="fa fa-edit"></i></a>
