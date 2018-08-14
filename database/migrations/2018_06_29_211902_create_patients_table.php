@@ -19,14 +19,22 @@ class CreatePatientsTable extends Migration
             $table->string('middleName');
             $table->string('lastName');
             $table->string('gender');
+            $table->string('civilStatus');
+            $table->string('rr');
+            $table->string('wt');
+            $table->string('ht');
+            $table->string('bp');
+            $table->string('temp');
+            $table->string('philNumber');
+            $table->integer('age');
             $table->string('contactNumber');
             $table->string('address');
-            $table->longText('symptoms');
+            $table->date('birthDate');
             $table->unsignedInteger('staffID');
             $table->foreign('staffID')
             ->references('id')->on('staff')
             ->onDelete('cascade');
-            $table->unsignedInteger('docID');
+            $table->unsignedInteger('docID')->nullable();
             $table->foreign('docID')
             ->references('id')->on('doctors')
             ->onDelete('cascade');

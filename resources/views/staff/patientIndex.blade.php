@@ -28,7 +28,7 @@ Patient List
 						<tbody>
 							@forelse ($patients as $patient)
 							<tr>
-								<td><a class="text-black" href="{{ route('patient.show', $patient->id) }}">{{ $patient->fullName }}</a></td>
+								<td><a class="text-black" href="{{ route('staff.showPatient', $patient->id) }}">{{ $patient->fullName }}</a></td>
 								<td>
 									<a class="btn btn-info btn-sm" href="{{ route('patient.edit', $patient->id) }}"><i class="fa fa-edit"></i></a>
 									<form action="{{ route('patient.destroy', $patient->id) }}" style="display:inline-block" method="post">

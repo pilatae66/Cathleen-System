@@ -16,5 +16,6 @@ class DatabaseSeeder extends Seeder
         factory(App\Patient::class, 100)->create();
         factory(App\Schedule::class, 100)->create();
         factory(App\HealthRecord::class, 100)->create();
+        factory(App\Admin::class, 1)->create();
     }
 }

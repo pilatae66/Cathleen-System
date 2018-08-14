@@ -51,10 +51,16 @@ class PatientController extends Controller
             'middlename' => 'required',
             'lastname' => 'required',
             'gender' => 'required',
-            'contactNumber' => 'required|numeric',
+            'birthDate' => 'required',
+            'age' => 'required',
+            'civilStatus' => 'required',
+            'wt' => 'required',
+            'ht' => 'required',
+            'bp' => 'required',
+            'temp' => 'required',
+            'rr' => 'required',
+            'philNumber' => 'required',
             'address' => 'required',
-            'symptoms' => 'required',
-            'docID' => 'required|numeric',
         ]);
 
         $patient = new Patient;
@@ -62,10 +68,17 @@ class PatientController extends Controller
         $patient->middleName = $request->middlename;
         $patient->lastName = $request->lastname;
         $patient->gender = $request->gender;
+        $patient->civilStatus = $request->civilStatus;
+        $patient->birthDate = $request->birthDate;
+        $patient->rr = $request->rr;
+        $patient->bp = $request->bp;
+        $patient->ht = $request->ht;
+        $patient->wt = $request->wt;
+        $patient->temp = $request->temp;
+        $patient->age = $request->age;
+        $patient->philNumber = $request->philNumber;
         $patient->contactNumber = $request->contactNumber;
-        $patient->symptoms = $request->symptoms;
         $patient->address = $request->address;
-        $patient->docID = $request->docID;
         $patient->staffID = Auth::user()->id;
 
         $patient->save();

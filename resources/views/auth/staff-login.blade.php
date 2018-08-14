@@ -27,9 +27,9 @@
 		</div>
 		<!-- /.login-logo -->
 		<div class="login-box-body">
-			<p class="login-box-msg">Sign in to start your Midwife session</p>
+			<p class="login-box-msg">Sign in to start your Staff session</p>
 
-			<form class="form" method="POST" action="{{ route('doctor.login') }}">
+			<form class="form" method="POST" action="{{ route('staff.login') }}">
 				@csrf
 				<div class="form-group {{ $errors->has('username') ? 'has-error' : ''  }}">
 					<input type="text" name="username" id="username" class="form-control" placeholder="Enter Username">
@@ -63,10 +63,9 @@
                     <a href="{{ route('staff.login') }}" class="btn btn-primary btn-block btn-flat">Sign In as Staff</a>
                 </div>
                 <div class="col-md-6">
-                    <a href="" class="btn btn-primary btn-block btn-flat">Sign In as Midwife</a>
+                    <a href="{{ route('doctor.login') }}" class="btn btn-primary btn-block btn-flat">Sign In as Midwife</a>
                 </div>
             </div>
-
 
 		</div>
 		<!-- /.login-box-body -->

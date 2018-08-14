@@ -1,10 +1,11 @@
+
 @extends('layouts.app')
 @section('title')
-Patient List
+Admin
 @endsection
 @section('breadcrumb')
 <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-<li class="active">Patient</li>
+<li class="active">Admin</li>
 @endsection
 @section('content')
 <div class="content">
@@ -12,26 +13,32 @@ Patient List
         <div class="col-md-12">
             <div class="box box-primary">
 				<div class="box-header with-border">
-					<i class="fa fa-user-o"></i>
-                    <h3 class="box-title">Patient List</h3>
-                    <div class="pull-right"><a href="{{ route('patient.create') }}" title="Register new Patient">Add Patient<i class="fa fa-plus"></i></a></div>
+					<i class="fa fa-bullhorn"></i>
+                    <h3 class="box-title">Admin</h3>
+                    <div class="box-tools pull-right">
+                        <a class="btn btn-primary btn-sm" href="{{ route('admin.create') }}"><i class="fa fa-plus"></i> Add Admin</a>
+                    </div>
 				</div>
 				<!-- /.box-header -->
 				<div class="box-body">
 					<table id="example1" class="table table-bordered table-striped">
 						<thead>
 							<tr>
-								<th>Patient Name</th>
+								<th>Admin ID</th>
+								<th>Name</th>
+								<th>Username</th>
 								<th>Actions</th>
 							</tr>
 						</thead>
 						<tbody>
-							@forelse ($patients as $patient)
+							@forelse ($admins as $admin)
 							<tr>
-								<td><a class="text-black" href="{{ route('patient.show', $patient->id) }}">{{ $patient->fullName }}</a></td>
+								<td>{{ $admin->id }}</td>
+								<td>{{ $admin->fullName }}</td>
+								<td>{{ $admin->username }}</td>
 								<td>
-									<a class="btn btn-info btn-sm" href="{{ route('patient.edit', $patient->id) }}"><i class="fa fa-edit"></i></a>
-									<form action="{{ route('patient.destroy', $patient->id) }}" style="display:inline-block" method="post">
+									<a class="btn btn-info btn-sm" href="{{ route('admin.edit', $admin->id) }}"><i class="fa fa-edit"></i></a>
+									<form action="{{ route('admin.destroy', $admin->id) }}" style="display:inline-block" method="post">
 										@csrf
 										<input type="hidden" name="_method" value="DELETE">
 										<button class="btn btn-danger btn-sm" type="submit"><i class="fa fa-trash"></i></button>
@@ -44,7 +51,9 @@ Patient List
 						</tbody>
 						<tfoot>
 							<tr>
-								<th>Patient Name</th>
+								<th>Admin ID</th>
+								<th>Name</th>
+								<th>Username</th>
 								<th>Actions</th>
 							</tr>
 						</tfoot>

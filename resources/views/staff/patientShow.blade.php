@@ -40,6 +40,10 @@
       <!-- /.col -->
       <div class="col-md-8">
         <div class="box box-primary">
+            <div class="box-header">
+                <h5 class="box-title">Health Records</h5>
+                <a class="btn btn-default pull-right" href="{{ route('staff.addRecord') }}">Add Symptoms</a>
+            </div>
             <div class="box-body">
                 <table id="example1" class="table table-bordered table-striped">
                     <thead>

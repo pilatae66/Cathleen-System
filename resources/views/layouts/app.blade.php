@@ -20,6 +20,17 @@
 	<script src="{{ asset('js/jquery.sparkline.min.js') }}"></script>
 	<script src="{{ asset('js/jquery.slimscroll.min.js') }}"></script>
 	<script src="{{ asset('js/Chart.js') }}"></script>
+	<script src="{{ asset('js/bootstrap-datepicker.min.js') }}"></script>
+
+	<script src="{{ asset('js/select2.full.min.js') }}"></script>
+	<script src="{{ asset('js/jquery.inputmask.js') }}"></script>
+	<script src="{{ asset('js/jquery.inputmask.date.extensions.js') }}"></script>
+	<script src="{{ asset('js/jquery.inputmask.extensions.js') }}"></script>
+	<script src="{{ asset('js/moment.min.js') }}"></script>
+	<script src="{{ asset('js/daterangepicker.js') }}"></script>
+	<script src="{{ asset('js/bootstrap-datepicker.min.js') }}"></script>
+	<script src="{{ asset('js/bootstrap-colorpicker.min.js') }}"></script>
+	<script src="{{ asset('js/bootstrap-timepicker.min.js') }}"></script>
 
 	<!-- Fonts -->
 	<link rel="dns-prefetch" href="https://fonts.gstatic.com">
@@ -69,8 +80,7 @@
 										<li><!-- start message -->
 											<a href="#">
 												<div class="pull-left">
-													<img src="{{ asset('storage/CCS.png') }}" class="img-circle">
-												</div>
+																</div>
 												<h4>
 													Support Team
 													<small><i class="fa fa-clock-o"></i> 5 mins</small>
@@ -141,21 +151,23 @@
 					<!-- User Account: style can be found in dropdown.less -->
 					<li class="dropdown user user-menu">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-							<img src="{{ asset('storage/CCS.png') }}" class="user-image">
-							<span class="hidden-xs">{{ Auth::user()->staffFname }} {{ Auth::user()->staffLname }}</span>
+							<span class="hidden-xs">@if (Auth::guard('staff')->check())
+								{{ Auth::user()->staffFname }} {{ Auth::user()->staffLname }}
+								@else
+								{{ Auth::user()->fullName }}
+								@endif
+							</span>
 						</a>
 						<ul class="dropdown-menu">
 							<!-- User image -->
 							<li class="user-header">
-								<img src="{{ asset('storage/CCS.png') }}" class="img-circle">
-
 								<p>
 
-                                    @if (Auth::guard('staff')->check())
-                                    {{ Auth::user()->staffFname }} {{ Auth::user()->staffLname }}
-                                    @else
-                                    {{ Auth::user()->doctorFname }} {{ Auth::user()->doctorLname }}
-                                    @endif
+									@if (Auth::guard('staff')->check())
+									{{ Auth::user()->staffFname }} {{ Auth::user()->staffLname }}
+									@else
+									{{ Auth::user()->fullName }}
+									@endif
 									<small>Member since {{ Auth::user()->created_at->format('M d, Y') }}</small>
 								</p>
 							</li>
@@ -187,34 +199,20 @@
 <aside class="main-sidebar">
 	<!-- sidebar: style can be found in sidebar.less -->
 	<section class="sidebar">
-		<!-- Sidebar user panel -->
-		<div class="user-panel">
-			<div class="pull-left image">
-				<img src="{{ asset('storage/CCS.png') }}" class="img-circle" alt="User Image">
-			</div>
-			<div class="pull-left info">
-				@if (Auth::guard('staff')->check())
-                <p>{{ Auth::user()->staffFname }} {{ Auth::user()->staffLname }}</p>
-                @else
-                <p>{{ Auth::user()->doctorFname }} {{ Auth::user()->doctorLname }}</p>
-                @endif
-				<a href="#"><i class="fa fa-circle text-success"></i> Online</a>
-			</div>
-		</div>
 		@include('layouts.navigation')
-    </aside>
+	</aside>
 
-    <!-- Content Wrapper. Contains page content -->
-    <div class="content-wrapper">
-        <!-- Content Header (Page header) -->
-        <section class="content-header">
-            <h1>
-                @yield('title')
-            </h1>
-            <ol class="breadcrumb">
-                @yield('breadcrumb')
-            </ol>
-        </section>
+	<!-- Content Wrapper. Contains page content -->
+	<div class="content-wrapper">
+		<!-- Content Header (Page header) -->
+		<section class="content-header">
+			<h1>
+				@yield('title')
+			</h1>
+			<ol class="breadcrumb">
+				@yield('breadcrumb')
+			</ol>
+		</section>
 
 		@yield('content')
 	</div>
@@ -286,12 +284,51 @@
 						</a>
 					</li>
 				</ul>
-            </div>
-            <!-- ./wrapper -->
-            <script>
-                $(function () {
-                    $('#example1').DataTable()
-                })
-            </script>
-        </body>
-        </html>
+			</div>
+			<!-- ./wrapper -->
+			<script>
+				$(function () {
+					$('#example1').DataTable()
+				})
+				//Initialize Select2 Elements
+				$('.select2').select2()
+
+				//Datemask dd/mm/yyyy
+				$('#datemask').inputmask('dd/mm/yyyy', { 'placeholder': 'dd/mm/yyyy' })
+				//Datemask2 mm/dd/yyyy
+				$('#datemask2').inputmask('mm/dd/yyyy', { 'placeholder': 'mm/dd/yyyy' })
+				//Money Euro
+				$('[data-mask]').inputmask()
+
+				//Date range picker
+				$('#reservation').daterangepicker()
+				//Date range picker with time picker
+				$('#reservationtime').daterangepicker({ timePicker: true, timePickerIncrement: 30, format: 'MM/DD/YYYY h:mm A' })
+				//Date range as a button
+				$('#daterange-btn').daterangepicker(
+				{
+					ranges   : {
+						'Today'       : [moment(), moment()],
+						'Yesterday'   : [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+						'Last 7 Days' : [moment().subtract(6, 'days'), moment()],
+						'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+						'This Month'  : [moment().startOf('month'), moment().endOf('month')],
+						'Last Month'  : [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+					},
+					startDate: moment().subtract(29, 'days'),
+					endDate  : moment()
+				},
+				function (start, end) {
+					$('#daterange-btn span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'))
+				}
+				)
+
+				//Date picker
+				$('#datepicker').datepicker({
+                    autoclose: true,
+                    format: 'yyyy-mm-dd',
+				})
+
+			</script>
+		</body>
+		</html>

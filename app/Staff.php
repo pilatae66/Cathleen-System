@@ -17,4 +17,9 @@ class Staff extends Authenticatable
     protected $hidden = [
         'password', 'remember_token'
     ];
+
+    public function getFullNameAttribute()
+    {
+        return $this->staffFname . " " . $this->staffLname;
+    }
 }

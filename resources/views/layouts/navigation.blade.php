@@ -2,8 +2,8 @@
 <!-- sidebar menu: : style can be found in sidebar.less -->
 <ul class="sidebar-menu" data-widget="tree">
     <li class="header">STAFF NAVIGATION</li>
-    <li class="{{ Request::is('patient') ? 'active' : '' }}">
-        <a href="{{ route('patient.index') }}">
+    <li class="{{ Request::is('staffs/patient') ? 'active' : '' }}">
+        <a href="{{ route('staff.getPatients') }}">
             <i class="fa fa-user-o"></i> <span>Patient List</span>
         </a>
     </li>
@@ -22,10 +22,35 @@
 </ul>
 </section>
 <!-- /.sidebar -->
+@elseif( Auth::guard('admin')->check() )
+<!-- sidebar menu: : style can be found in sidebar.less -->
+<ul class="sidebar-menu" data-widget="tree">
+    <li class="header">ADMIN NAVIGATION</li>
+    <li class="{{ Request::is('admins/dashboard') ? 'active' : '' }}">
+        <a href="{{ route('admin.dashboard') }}">
+            <i class="fa fa-user-o"></i> <span>Dashboard</span>
+        </a>
+    </li>
+    <li class="{{ Request::is('admins/staff') || Request::is('admins/midwife') || Request::is('admins/admin') ? 'active menu-open ' : '' }}treeview">
+        <a href="#">
+            <i class="fa fa-dashboard"></i> <span>Acounts</span>
+            <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+            </span>
+        </a>
+        <ul class="treeview-menu">
+            <li class="{{ Request::is('admins/staff') ? 'active' : '' }}"><a href="{{ route('admin.staffIndex') }}"><i class="fa fa-circle-o"></i> Staff</a></li>
+            <li class="{{ Request::is('admins/midwife') ? 'active' : '' }}"><a href="{{ route('admin.midwifeIndex') }}"><i class="fa fa-circle-o"></i> Midwife</a></li>
+            <li class="{{ Request::is('admins/admin') ? 'active' : '' }}"><a href="{{ route('admin.adminIndex') }}"><i class="fa fa-circle-o"></i> Admins</a></li>
+        </ul>
+    </li>
+</ul>
+</section>
+<!-- /.sidebar -->
 @else
 <!-- sidebar menu: : style can be found in sidebar.less -->
 <ul class="sidebar-menu" data-widget="tree">
-    <li class="header">DOCTOR NAVIGATION</li>
+    <li class="header">MIDWIFE NAVIGATION</li>
     <li class="{{ Request::is('doc/dashboard') ? 'active' : '' }}">
         <a href="{{ route('doctor.dashboard') }}">
             <i class="fa fa-dashboard"></i> <span>Dashboard</span>

@@ -3,10 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Staff;
+use App\Patient;
 use Illuminate\Http\Request;
 
 class StaffController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth:staff');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -130,5 +135,24 @@ class StaffController extends Controller
     public function showDashboard()
     {
         return view('staff.dashboard');
+    }
+
+    public function showPatient($id)
+    {
+        $patient = Patient::find($id);
+
+        return view('staff.patientShow', compact('patient'));
+    }
+
+    public function getPatients()
+    {
+        $patients = Patient::all();
+
+        return view('staff.patientIndex', compact('patients'));
+    }
+
+    public function addRecord()
+    {
+        return view('staff.addRecord');
     }
 }

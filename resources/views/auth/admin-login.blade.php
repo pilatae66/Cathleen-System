@@ -27,9 +27,9 @@
 		</div>
 		<!-- /.login-logo -->
 		<div class="login-box-body">
-			<p class="login-box-msg">Sign in to start your Staff session</p>
+			<p class="login-box-msg">Sign in to start your Admin session</p>
 
-			<form class="form" method="POST" action="{{ route('login') }}">
+			<form class="form" method="POST" action="{{ route('admin.login') }}">
 				@csrf
 				<div class="form-group {{ $errors->has('username') ? 'has-error' : ''  }}">
 					<input type="text" name="username" id="username" class="form-control" placeholder="Enter Username">
@@ -38,7 +38,7 @@
 					@endif
 				</div>
 				<div class="form-group has-feedback">
-					<input type="password" name="password" class="form-control" placeholder="Password">
+					<input type="password" name="password" class="form-control" placeholder="Enter Password">
 					<span class="glyphicon glyphicon-lock form-control-feedback"></span>
 				</div>
 				<div class="row">
@@ -57,15 +57,7 @@
 				</div>
 			</form>
 
-            <a href="#">I forgot my password</a><br><br>
-            <div class="row">
-                <div class="col-md-6">
-                    <a href="{{ route('login') }}" class="btn btn-primary btn-block btn-flat">Sign In as Staff</a>
-                </div>
-                <div class="col-md-6">
-                    <a href="{{ route('doctor.login') }}" class="btn btn-primary btn-block btn-flat">Sign In as Doctor</a>
-                </div>
-            </div>
+            <a href="#">I forgot my password</a>
 
 		</div>
 		<!-- /.login-box-body -->

@@ -22,7 +22,6 @@ Patient List
 						<thead>
 							<tr>
 								<th>Patient Name</th>
-								<th>Symptoms</th>
 								<th>Actions</th>
 							</tr>
 						</thead>
@@ -30,7 +29,6 @@ Patient List
                             @forelse ($patientList as $list)
 							<tr>
                                 <td><a class="text-black" href="{{ route('doctor.showPatient', $list->id) }}">{{ $list->fullName }}</a></td>
-                                <td>{{ $list->symptoms }}</td>
                                 <td>
                                     <a class="btn btn-info btn-sm" href="{{ route('patient.edit', $list->id) }}"><i class="fa fa-edit"></i></a>
 									<form action="{{ route('patient.destroy', $list->id) }}" style="display:inline-block" method="post">
@@ -47,7 +45,6 @@ Patient List
                             <tfoot>
                                 <tr>
                                     <th>Patient Name</th>
-                                    <th>Symptoms</th>
                                     <th>Actions</th>
 							</tr>
 						</tfoot>

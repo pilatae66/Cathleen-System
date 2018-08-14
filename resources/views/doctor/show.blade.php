@@ -16,7 +16,6 @@
 			<!-- Profile Image -->
 			<div class="box box-primary">
 				<div class="box-body box-profile">
-					<img class="profile-user-img img-responsive img-circle" src="{{ asset('storage/CCS.png') }}" alt="User profile picture">
 
 					<h3 class="profile-username text-center">{{ $patient->fullName }}</h3>
 
@@ -41,18 +40,23 @@
 		<!-- /.col -->
 		<div class="col-md-8">
 			<div class="box box-primary">
+                <div class="box-header">Patient's Health Record
+                    <div class="box-tools pull-right">
+                        <a href="{{ route('healthRecord.create', $patient->id) }}"><i class="fa fa-plus"></i></a>
+                    </div>
+                </div>
 				<div class="box-body">
 					<table id="example1" class="table table-bordered table-striped">
 						<thead>
 							<tr>
-								<th>Doctor</th>
+								<th>Midwife</th>
 								<th>Status</th>
 								<th>Actions</th>
 							</tr>
 						</thead>
 						<tfoot>
 							<tr>
-								<th>Doctor</th>
+								<th>Midwife</th>
 								<th>Status</th>
 								<th>Actions</th>
 							</tr>
@@ -60,7 +64,7 @@
 						<tbody>
 							@foreach ($records as $record)
 							<tr>
-								<td>Dr. {{ $record->doctor->doctorLname }}</td>
+								<td><a style="color:black;" href="{{ route('doctor.dashboard') }}">{{ $record->doctor->doctorLname }}</a></td>
 								<td>{{ $record->status }}</td>
 								<td>
 									<a class="btn btn-success btn-sm" href="#"><i class="fa fa-edit"></i></a>
