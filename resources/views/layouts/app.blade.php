@@ -10,28 +10,6 @@
 
 	<title>{{ config('app.name', 'Laravel') }}</title>
 
-	<!-- Scripts -->
-	<script src="{{ asset('js/jquery.min.js') }}"></script>
-	<script src="{{ asset('js/bootstrap.min.js') }}"></script>
-	<script src="{{ asset('js/jquery.dataTables.min.js') }}"></script>
-	<script src="{{ asset('js/dataTables.bootstrap.min.js') }}"></script>
-	<script src="{{ asset('js/fastclick.js') }}"></script>
-	<script src="{{ asset('js/adminlte.min.js') }}"></script>
-	<script src="{{ asset('js/jquery.sparkline.min.js') }}"></script>
-	<script src="{{ asset('js/jquery.slimscroll.min.js') }}"></script>
-	<script src="{{ asset('js/Chart.js') }}"></script>
-	<script src="{{ asset('js/bootstrap-datepicker.min.js') }}"></script>
-
-	<script src="{{ asset('js/select2.full.min.js') }}"></script>
-	<script src="{{ asset('js/jquery.inputmask.js') }}"></script>
-	<script src="{{ asset('js/jquery.inputmask.date.extensions.js') }}"></script>
-	<script src="{{ asset('js/jquery.inputmask.extensions.js') }}"></script>
-	<script src="{{ asset('js/moment.min.js') }}"></script>
-	<script src="{{ asset('js/daterangepicker.js') }}"></script>
-	<script src="{{ asset('js/bootstrap-datepicker.min.js') }}"></script>
-	<script src="{{ asset('js/bootstrap-colorpicker.min.js') }}"></script>
-	<script src="{{ asset('js/bootstrap-timepicker.min.js') }}"></script>
-
 	<!-- Fonts -->
 	<link rel="dns-prefetch" href="https://fonts.gstatic.com">
 	<link href="https://fonts.googleapis.com/css?family=Raleway:300,400,600" rel="stylesheet" type="text/css">
@@ -43,6 +21,11 @@
 	<link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
 	<link href="{{ asset('css/AdminLTE.min.css') }}" rel="stylesheet">
 	<link href="{{ asset('css/_all-skins.min.css') }}" rel="stylesheet">
+	<link href="{{ asset('css/bootstrap-datepicker.min.css') }}" rel="stylesheet">
+	<link href="{{ asset('css/bootstrap-timepicker.min.css') }}" rel="stylesheet">
+	<link href="{{ asset('css/daterangepicker.css') }}" rel="stylesheet">
+	<link href="{{ asset('css/select2.min.css') }}" rel="stylesheet">
+	<link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 	<div class="wrapper">
@@ -80,7 +63,7 @@
 										<li><!-- start message -->
 											<a href="#">
 												<div class="pull-left">
-																</div>
+                                                </div>
 												<h4>
 													Support Team
 													<small><i class="fa fa-clock-o"></i> 5 mins</small>
@@ -199,136 +182,109 @@
 <aside class="main-sidebar">
 	<!-- sidebar: style can be found in sidebar.less -->
 	<section class="sidebar">
-		@include('layouts.navigation')
-	</aside>
+        @include('layouts.navigation')
+	</section>
+</aside>
 
-	<!-- Content Wrapper. Contains page content -->
-	<div class="content-wrapper">
-		<!-- Content Header (Page header) -->
-		<section class="content-header">
-			<h1>
-				@yield('title')
-			</h1>
-			<ol class="breadcrumb">
-				@yield('breadcrumb')
-			</ol>
-		</section>
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+            @yield('title')
+        </h1>
+        <ol class="breadcrumb">
+            @yield('breadcrumb')
+        </ol>
+    </section>
 
-		@yield('content')
-	</div>
-	<!-- /.content-wrapper -->
+    @yield('content')
+</div>
+<!-- /.content-wrapper -->
 
-	<footer class="main-footer">
-		<div class="pull-right hidden-xs">
-			<b>Version</b> 1.0.0
-		</div>
-		<strong>Copyright &copy; 2018 - {{ Date('Y') }} <a href="https://www.facebook.com/LonerJey">LonerWeb</a>.</strong> All rights
-		reserved.
-	</footer>
+<footer class="main-footer">
+    <div class="pull-right hidden-xs">
+        <b>Version</b> 1.0.0
+    </div>
+    <strong>Copyright &copy; 2018 - {{ Date('Y') }} <a href="https://www.facebook.com/LonerJey">LonerWeb</a>.</strong> All rights
+    reserved.
+</footer>
 
-	<!-- Control Sidebar -->
-	<aside class="control-sidebar control-sidebar-dark">
-		<!-- Create the tabs -->
-		<ul class="nav nav-tabs nav-justified control-sidebar-tabs">
-			<li><a href="#control-sidebar-home-tab" data-toggle="tab"><i class="fa fa-home"></i></a></li>
-			<li><a href="#control-sidebar-settings-tab" data-toggle="tab"><i class="fa fa-gears"></i></a></li>
-		</ul>
-		<!-- Tab panes -->
-		<div class="tab-content">
-			<!-- Home tab content -->
-			<div class="tab-pane" id="control-sidebar-home-tab">
-				<h3 class="control-sidebar-heading">Recent Activity</h3>
-				<ul class="control-sidebar-menu">
-					<li>
-						<a href="javascript:void(0)">
-							<i class="menu-icon fa fa-birthday-cake bg-red"></i>
 
-							<div class="menu-info">
-								<h4 class="control-sidebar-subheading">Langdon's Birthday</h4>
+</div>
+<!-- ./wrapper -->
 
-								<p>Will be 23 on April 24th</p>
-							</div>
-						</a>
-					</li>
-					<li>
-						<a href="javascript:void(0)">
-							<i class="menu-icon fa fa-user bg-yellow"></i>
 
-							<div class="menu-info">
-								<h4 class="control-sidebar-subheading">Frodo Updated His Profile</h4>
+<!-- Scripts -->
+<script src="{{ asset('js/jquery.min.js') }}"></script>
+<script src="{{ asset('js/bootstrap.min.js') }}"></script>
+<script src="{{ asset('js/jquery.dataTables.min.js') }}"></script>
+<script src="{{ asset('js/dataTables.bootstrap.min.js') }}"></script>
+<script src="{{ asset('js/jquery.sparkline.min.js') }}"></script>
+<script src="{{ asset('js/Chart.js') }}"></script>
+<script src="{{ asset('js/bootstrap-datepicker.min.js') }}"></script>
 
-								<p>New phone +1(800)555-1234</p>
-							</div>
-						</a>
-					</li>
-					<li>
-						<a href="javascript:void(0)">
-							<i class="menu-icon fa fa-envelope-o bg-light-blue"></i>
+<script src="{{ asset('js/select2.full.min.js') }}"></script>
+<script src="{{ asset('js/jquery.inputmask.js') }}"></script>
+<script src="{{ asset('js/jquery.inputmask.date.extensions.js') }}"></script>
+<script src="{{ asset('js/jquery.inputmask.extensions.js') }}"></script>
+<script src="{{ asset('js/moment.min.js') }}"></script>
+<script src="{{ asset('js/daterangepicker.js') }}"></script>
+<script src="{{ asset('js/bootstrap-datepicker.min.js') }}"></script>
+<script src="{{ asset('js/bootstrap-colorpicker.min.js') }}"></script>
+<script src="{{ asset('js/bootstrap-timepicker.min.js') }}"></script>
+<script src="{{ asset('js/jquery.slimscroll.min.js') }}"></script>
+<script src="{{ asset('js/fastclick.js') }}"></script>
+<script src="{{ asset('js/adminlte.min.js') }}"></script>
 
-							<div class="menu-info">
-								<h4 class="control-sidebar-subheading">Nora Joined Mailing List</h4>
+<script>
+    $(document).ready(function () {
+        $('#datatable').DataTable()
+        //Initialize Select2 Elements
+        $('.select2').select2()
 
-								<p>nora@example.com</p>
-							</div>
-						</a>
-					</li>
-					<li>
-						<a href="javascript:void(0)">
-							<i class="menu-icon fa fa-file-code-o bg-green"></i>
+        //Datemask dd/mm/yyyy
+        $('#datemask').inputmask('dd/mm/yyyy', { 'placeholder': 'dd/mm/yyyy' })
+        //Datemask2 mm/dd/yyyy
+        $('#datemask2').inputmask('mm/dd/yyyy', { 'placeholder': 'mm/dd/yyyy' })
+        //Money Euro
+        $('[data-mask]').inputmask()
 
-							<div class="menu-info">
-								<h4 class="control-sidebar-subheading">Cron Job 254 Executed</h4>
+        //Date range picker
+        $('#reservation').daterangepicker()
+        //Date range picker with time picker
+        $('#reservationtime').daterangepicker({ timePicker: true, timePickerIncrement: 30, format: 'MM/DD/YYYY h:mm A' })
+        //Date range as a button
+        $('#daterange-btn').daterangepicker(
+        {
+            ranges   : {
+                'Today'       : [moment(), moment()],
+                'Yesterday'   : [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+                'Last 7 Days' : [moment().subtract(6, 'days'), moment()],
+                'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+                'This Month'  : [moment().startOf('month'), moment().endOf('month')],
+                'Last Month'  : [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+            },
+            startDate: moment().subtract(29, 'days'),
+            endDate  : moment()
+        },
+        function (start, end) {
+            $('#daterange-btn span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'))
+        }
+        )
 
-								<p>Execution time 5 seconds</p>
-							</div>
-						</a>
-					</li>
-				</ul>
-			</div>
-			<!-- ./wrapper -->
-			<script>
-				$(function () {
-					$('#example1').DataTable()
-				})
-				//Initialize Select2 Elements
-				$('.select2').select2()
+        //Date picker
+        $('.datepicker').datepicker({
+            autoclose: true,
+            format: 'yyyy-mm-dd',
+        })
 
-				//Datemask dd/mm/yyyy
-				$('#datemask').inputmask('dd/mm/yyyy', { 'placeholder': 'dd/mm/yyyy' })
-				//Datemask2 mm/dd/yyyy
-				$('#datemask2').inputmask('mm/dd/yyyy', { 'placeholder': 'mm/dd/yyyy' })
-				//Money Euro
-				$('[data-mask]').inputmask()
-
-				//Date range picker
-				$('#reservation').daterangepicker()
-				//Date range picker with time picker
-				$('#reservationtime').daterangepicker({ timePicker: true, timePickerIncrement: 30, format: 'MM/DD/YYYY h:mm A' })
-				//Date range as a button
-				$('#daterange-btn').daterangepicker(
-				{
-					ranges   : {
-						'Today'       : [moment(), moment()],
-						'Yesterday'   : [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-						'Last 7 Days' : [moment().subtract(6, 'days'), moment()],
-						'Last 30 Days': [moment().subtract(29, 'days'), moment()],
-						'This Month'  : [moment().startOf('month'), moment().endOf('month')],
-						'Last Month'  : [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
-					},
-					startDate: moment().subtract(29, 'days'),
-					endDate  : moment()
-				},
-				function (start, end) {
-					$('#daterange-btn span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'))
-				}
-				)
-
-				//Date picker
-				$('#datepicker').datepicker({
-                    autoclose: true,
-                    format: 'yyyy-mm-dd',
-				})
-
-			</script>
-		</body>
-		</html>
+        //Timepicker
+        $('.timepicker').timepicker({
+            showInputs: false
+        })
+    })
+</script>
+@yield('scripts')
+</body>
+</html>

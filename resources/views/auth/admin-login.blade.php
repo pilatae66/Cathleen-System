@@ -29,7 +29,7 @@
 		<div class="login-box-body">
 			<p class="login-box-msg">Sign in to start your Admin session</p>
 
-			<form class="form" method="POST" action="{{ route('admin.login') }}">
+			<form class="form" method="POST" action="{{ route('admins.login') }}">
 				@csrf
 				<div class="form-group {{ $errors->has('username') ? 'has-error' : ''  }}">
 					<input type="text" name="username" id="username" class="form-control" placeholder="Enter Username">

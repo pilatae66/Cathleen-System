@@ -17,7 +17,7 @@ Midwife
 					<h3 class="box-title">Edit Midwife</h3>
 				</div>
 				<div class="box-body">
-						<form action="{{ route('admin.midwifeUpdate', $midwife->id) }}" method="post">
+						<form action="{{ route('admins.midwifeUpdate', $midwife->id) }}" method="post">
                             @csrf
                             <input type="hidden" name="_method" value="PATCH">
 							<div class="form-group {{ $errors->has('doctorFname') ? 'has-error' : ''  }}">

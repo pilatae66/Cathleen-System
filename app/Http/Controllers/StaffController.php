@@ -132,6 +132,16 @@ class StaffController extends Controller
         return redirect('staff');
     }
 
+    public function registerAdult()
+    {
+        return view('patient.createAdult');
+    }
+
+    public function registerChild()
+    {
+        return view('patient.createChild');
+    }
+
     public function showDashboard()
     {
         return view('staff.dashboard');

@@ -17,7 +17,7 @@ Staff
 					<h3 class="box-title">Register Staff</h3>
 				</div>
 				<div class="box-body">
-						<form action="{{ route('admin.staffStore') }}" method="post">
+						<form action="{{ route('admins.staffStore') }}" method="post">
 							@csrf
 							<div class="form-group {{ $errors->has('staffFname') ? 'has-error' : ''  }}">
 								<label for="staffFname">Firstname</label>

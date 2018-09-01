@@ -198,6 +198,12 @@ class AdminController extends Controller
         return redirect()->route('admin.staffIndex');
     }
 
+    public function midwifeIndex()
+    {
+        $midwives = Doctor::all();
+        return view('admin.midwifeIndex', compact('midwives'));
+    }
+
     public function staffDestroy(Staff $staff)
     {
         $staff->delete();

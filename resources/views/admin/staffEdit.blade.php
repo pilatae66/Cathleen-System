@@ -17,7 +17,7 @@ Staff
 					<h3 class="box-title">Register Staff</h3>
 				</div>
 				<div class="box-body">
-						<form action="{{ route('admin.staffUpdate', $staff->id) }}" method="post">
+						<form action="{{ route('admins.staffUpdate', $staff->id) }}" method="post">
                             @csrf
                             <input type="hidden" name="_method" value="PATCH">
 							<div class="form-group {{ $errors->has('staffFname') ? 'has-error' : ''  }}">

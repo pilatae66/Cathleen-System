@@ -32,8 +32,6 @@ class PatientController extends Controller
      */
     public function create()
     {
-        $doctors = Doctor::all();
-
         return view('patient.create', compact('doctors'));
     }
 
@@ -45,22 +43,23 @@ class PatientController extends Controller
      */
     public function store(Request $request)
     {
+        return $request;
         $this->validate($request, [
-
+            'arrival' => 'required',
+            'disposition' => 'required',
             'firstname' => 'required',
             'middlename' => 'required',
             'lastname' => 'required',
-            'gender' => 'required',
-            'birthDate' => 'required',
-            'age' => 'required',
-            'civilStatus' => 'required',
-            'wt' => 'required',
-            'ht' => 'required',
-            'bp' => 'required',
-            'temp' => 'required',
-            'rr' => 'required',
             'philNumber' => 'required',
+            'birthDate' => 'required',
+            'contactNumber' => 'required',
+            'occupation' => 'required',
+            'educational_background' => 'required',
+            'in_case_of_emergency' => 'required',
+            'age' => 'required',
             'address' => 'required',
+            'civilStatus' => 'required',
+            'gender' => 'required',
         ]);
 
         $patient = new Patient;

@@ -14,11 +14,21 @@ Patient List
 				<div class="box-header with-border">
 					<i class="fa fa-user-o"></i>
                     <h3 class="box-title">Patient List</h3>
-                    <div class="pull-right"><a href="{{ route('patient.create') }}" title="Register new Patient">Add Patient<i class="fa fa-plus"></i></a></div>
+                    <div class="pull-right">
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">Register Patient</button>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="{{ route('staff.registerAdult') }}">Adult</a></li>
+                                <li><a href="{{ route('staff.registerChild') }}">Child</a></li>
+                                {{-- <li class="divider"></li>
+                                <li><a href="#">Separated link</a></li> --}}
+                            </ul>
+                        </div>
+                    </div>
 				</div>
 				<!-- /.box-header -->
 				<div class="box-body">
-					<table id="example1" class="table table-bordered table-striped">
+					<table id="datatable" class="table table-bordered table-striped">
 						<thead>
 							<tr>
 								<th>Patient Name</th>

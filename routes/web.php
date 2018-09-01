@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return redirect('login');
+    return redirect('staff/login');
 });
 
 Auth::routes();
@@ -59,38 +59,42 @@ Route::get('healthRecord/{id}/create', 'HealthRecordController@create')->name('h
 //Admin Routes
 Route::resource('admin', 'AdminController');
 
-Route::get('admins/login', 'Admin\LoginController@showLoginForm')->name('admin.login');
+Route::get('admins/login', 'Admin\LoginController@showLoginForm')->name('admins.login');
 
-Route::post('admins/login', 'Admin\LoginController@login')->name('admin.login');
+Route::post('admins/login', 'Admin\LoginController@login')->name('admins.login');
 
-Route::get('admins/dashboard', 'AdminController@dashboard')->name('admin.dashboard');
+Route::get('admins/dashboard', 'AdminController@dashboard')->name('admins.dashboard');
 
-Route::get('admins/staff', 'AdminController@staffIndex')->name('admin.staffIndex');
+Route::get('admins/staff', 'AdminController@staffIndex')->name('admins.staffIndex');
 
-Route::get('admins/staff/create', 'AdminController@staffCreate')->name('admin.staffCreate');
+Route::get('admins/staff/create', 'AdminController@staffCreate')->name('admins.staffCreate');
 
-Route::post('admins/staff', 'AdminController@staffStore')->name('admin.staffStore');
+Route::post('admins/staff', 'AdminController@staffStore')->name('admins.staffStore');
 
-Route::get('admins/{staff}/staff/edit', 'AdminController@staffEdit')->name('admin.staffEdit');
+Route::get('admins/{staff}/staff/edit', 'AdminController@staffEdit')->name('admins.staffEdit');
 
-Route::patch('admins/{staff}/staff', 'AdminController@staffUpdate')->name('admin.staffUpdate');
+Route::patch('admins/{staff}/staff', 'AdminController@staffUpdate')->name('admins.staffUpdate');
 
-Route::delete('admins/{staff}/staff', 'AdminController@staffDestroy')->name('admin.staffDestroy');
+Route::delete('admins/{staff}/staff', 'AdminController@staffDestroy')->name('admins.staffDestroy');
 
-Route::get('admins/midwife', 'AdminController@midwifeIndex')->name('admin.midwifeIndex');
+Route::get('admins/midwife', 'AdminController@midwifeIndex')->name('admins.midwifeIndex');
 
-Route::get('admins/midwife/create', 'AdminController@midwifeCreate')->name('admin.midwifeCreate');
+Route::get('admins/midwife/create', 'AdminController@midwifeCreate')->name('admins.midwifeCreate');
 
-Route::post('admins/midwife', 'AdminController@midwifeStore')->name('admin.midwifeStore');
+Route::post('admins/midwife', 'AdminController@midwifeStore')->name('admins.midwifeStore');
 
-Route::delete('admins/{doctor}/midwife', 'AdminController@midwifeDestroy')->name('admin.midwifeDestroy');
+Route::delete('admins/{doctor}/midwife', 'AdminController@midwifeDestroy')->name('admins.midwifeDestroy');
 
-Route::get('admins/{doctor}/midwife/edit', 'AdminController@midwifeEdit')->name('admin.midwifeEdit');
+Route::get('admins/{doctor}/midwife/edit', 'AdminController@midwifeEdit')->name('admins.midwifeEdit');
 
-Route::patch('admins/{doctor}/midwife', 'AdminController@midwifeUpdate')->name('admin.midwifeUpdate');
+Route::patch('admins/{doctor}/midwife', 'AdminController@midwifeUpdate')->name('admins.midwifeUpdate');
 
-Route::get('admins/admin', 'AdminController@adminIndex')->name('admin.adminIndex');
+Route::get('admins/admin', 'AdminController@adminIndex')->name('admins.adminIndex');
 
 //Patient Routes
 
 Route::resource('patient', 'PatientController');
+
+Route::get('patient/adult/create', 'StaffController@registerAdult')->name('staff.registerAdult');
+
+Route::get('patient/child/create', 'StaffController@registerChild')->name('staff.registerChild');

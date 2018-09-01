@@ -4,6 +4,8 @@ use Faker\Generator as Faker;
 
 $factory->define(App\Patient::class, function (Faker $faker) {
     return [
+        'arrival' => $faker->firstName,
+        'disposition' => $faker->firstName,
         'firstName' => $faker->firstName,
         'middleName' => $faker->firstName,
         'lastName' => $faker->lastName,
@@ -12,7 +14,6 @@ $factory->define(App\Patient::class, function (Faker $faker) {
         'civilStatus' => $faker->randomElement($array = array ('Single','Married','Divorced','Widow'), $count = 1),
         'contactNumber' => $faker->e164PhoneNumber,
         'address' => $faker->address,
-        'philNumber' => $faker->numberBetween($min = 10, $max = 100),
         'rr' => $faker->numberBetween($min = 10, $max = 100),
         'wt' => $faker->numberBetween($min = 10, $max = 100),
         'ht' => $faker->numberBetween($min = 10, $max = 100),

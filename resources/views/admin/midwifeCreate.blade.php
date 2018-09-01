@@ -17,7 +17,7 @@ Midwife
 					<h3 class="box-title">Register Midwife</h3>
 				</div>
 				<div class="box-body">
-						<form action="{{ route('admin.midwifeStore') }}" method="post">
+						<form action="{{ route('admins.midwifeStore') }}" method="post">
 							@csrf
 							<div class="form-group {{ $errors->has('doctorFname') ? 'has-error' : ''  }}">
 								<label for="doctorFname">Firstname</label>
