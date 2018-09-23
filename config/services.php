@@ -34,5 +34,9 @@ return [
         'key' => env('STRIPE_KEY'),
         'secret' => env('STRIPE_SECRET'),
     ],
+    'karix' => [
+        'id' => env('KARIX_ID'),
+        'token' => env('KARIX_TOKEN'),
+    ],
 
 ];

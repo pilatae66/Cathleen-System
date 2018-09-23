@@ -18,7 +18,29 @@ Patient List
 				</div>
 				<!-- /.box-header -->
 				<div class="box-body">
-					You are logged in as Staff!
+					<h4>Today's Patients</h4><br>
+					<table id="datatable" class="table table-bordered table-striped">
+						<thead>
+							<tr>
+								<td>Patient Name</td>
+								<td>Scheduled Services</td>
+							</tr>
+						</thead>
+						<tbody>
+							@foreach ($schedules as $schedule)
+								<tr>
+									<td>{{ $schedule->patient->fullName }}</td>
+									<td>{{ $schedule->service }}</td>
+								</tr>
+							@endforeach
+						</tbody>
+						<tfoot>
+							<tr>
+								<td>Patient Name</td>
+								<td>Scheduled Services</td>
+							</tr>
+						</tfoot>
+					</table>
 				</div>
 				<!-- /.box-body -->
 			</div>

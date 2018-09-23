@@ -237,6 +237,7 @@
 <script src="{{ asset('js/fastclick.js') }}"></script>
 <script src="{{ asset('js/adminlte.min.js') }}"></script>
 
+@yield('scripts')
 <script>
     $(document).ready(function () {
         $('#datatable').DataTable()
@@ -285,6 +286,5 @@
         })
     })
 </script>
-@yield('scripts')
 </body>
 </html>

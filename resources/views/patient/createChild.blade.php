@@ -22,7 +22,7 @@ Patient
 					<div class="row">
 						<div class="col-md-12">
 							<div class="row">
-								<form action="{{ route('patient.store') }}" method="post">
+								<form action="{{ route('staff.storeChild') }}" method="post">
 									@csrf
 									<div class="col-md-4">
 										<div class="form-group {{ $errors->has('arrival') ? 'has-error' : ''  }}">
@@ -78,6 +78,15 @@ Patient
 											@endif
 										</div>
 									</div>
+									<div class="col-md-4">
+										<div class="form-group {{ $errors->has('contact_number') ? 'has-error' : ''  }}">
+											<label for="contact_number">Contact Number</label>
+											<input type="text" name="contact_number" id="contact_number" class="form-control" placeholder="Enter Contact Number">
+											@if ( $errors->has('contact_number') )
+											<span class="help-block">{{ $errors->first('contact_number') }}</span>
+											@endif
+										</div>
+									</div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-4">
@@ -125,7 +134,7 @@ Patient
                                     <div class="col-md-4">
                                         <div class="form-group {{ $errors->has('place_of_delivery') ? 'has-error' : ''  }}">
                                             <label for="place_of_delivery">Place of Delivery</label>
-                                            <input type="text" name="place_of_delivery" id="place_of_delivery" class="form-control datepicker" placeholder="Choose Date First Seen">
+                                            <input type="text" name="place_of_delivery" class="form-control" placeholder="Enter Place of Delivery">
                                             @if ( $errors->has('place_of_delivery') )
                                             <span class="help-block">{{ $errors->first('place_of_delivery') }}</span>
                                             @endif
@@ -215,53 +224,6 @@ Patient
 								</div>
 							</div>
 						</div>
-						<hr>
-						<div class="row">
-							<div class="col-md-10">
-								<h4 class="text-center">Brothers and Sisters</h4>
-							</div>
-							<div class="col-md-2">
-								<button class="btn btn-primary btn-sm pull-right" id="addSibling">Add Sibling</button>
-							</div>
-						</div>
-						<hr>
-						<div class="siblings">
-							<div class="sibling">
-								<div class="row">
-									<div class="col-md-6">
-										<div class="form-group {{ $errors->has('siblings') ? 'has-error' : ''  }}">
-											<label for="siblings">Name</label>
-											<input type="text" name="siblings[]" id="siblings" class="form-control" placeholder="Enter Sibling's Name">
-											@if ( $errors->has('siblings') )
-											<span class="help-block">{{ $errors->first('siblings') }}</span>
-											@endif
-										</div>
-									</div>
-									<div class="col-md-2">
-										<div class="form-group {{ $errors->has('gender') ? 'has-error' : ''  }}">
-											<label for="gender">Gender</label>
-											<select name="gender[]" id="gender" class="form-control">
-												<option disabled hidden selected>Choose...</option>
-												<option value="Male">Male</option>
-												<option value="Female">Female</option>
-											</select>
-											@if ( $errors->has('gender') )
-											<span class="help-block">{{ $errors->first('gender') }}</span>
-											@endif
-										</div>
-									</div>
-									<div class="col-md-4">
-										<div class="form-group date {{ $errors->has('siblingdob') ? 'has-error' : ''  }}">
-											<label for="siblings">Date of Birth</label>
-											<input type="text" name="siblingdob[]" id="datepicker" class="form-control datepicker" placeholder="Choose Sibling's Date of Birth">
-											@if ( $errors->has('siblingdob') )
-											<span class="help-block">{{ $errors->first('siblingdob') }}</span>
-											@endif
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
 					</div>
 					<div class="box-footer">
 						<button class="btn btn-success" type="submit"><i class="fa fa-save"></i> Save</button>
@@ -275,11 +237,9 @@ Patient
 @section('scripts')
 <script>
 	$(document).ready(function() {
-		$('#addSibling').on('click', () => {
-			// alert('add sibling button triggered')
+		$('.addSibling').on('click', () => {
 			sibling = $('.sibling').last().clone()
             $('.siblings').append(sibling)
-            console.log('Sibling',sibling)
 			return false
 		})
 	})

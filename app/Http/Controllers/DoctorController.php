@@ -7,12 +7,14 @@ use App\Patient;
 use App\HealthRecord;
 use Auth;
 use Illuminate\Http\Request;
+use App\AdultPatient;
+use App\ChildPatient;
+use App\PatientRequest;
 
 class DoctorController extends Controller
 {
     public function __construct()
     {
-        // $this->middleware('auth:doctor');
         $this->middleware('auth:doctor');
     }
 
@@ -92,10 +94,15 @@ class DoctorController extends Controller
         //
     }
 
-    public function getPatients($id)
+    public function getPatients()
     {
-        $patientList = Patient::where('docID', $id)->get();
-
+        $patientList = Patient::select(['id','firstname','middlename','lastname','patient_type'])->get();
+        foreach ($patientList as $key => $value) {
+            $list = PatientRequest::where('patient_id', $value->id)->count();
+            $value->count = $list;
+            
+        }
+        // return $patientList;
         return view('doctor.index', compact('patientList'));
     }
 
@@ -110,5 +117,21 @@ class DoctorController extends Controller
         $patient = Patient::where('id', $id)->first();
 
         return view('doctor.show', compact('patient', 'records'));
+    }
+
+    public function getPatientRequest($patient){
+        $pat = Patient::find($patient);
+        $patient_requests = PatientRequest::where('patient_id', $patient)->get();
+
+        return view('doctor.getPatientRequest', compact('patient_requests', 'pat'));
+    }
+
+    public function checkUp($id)
+    {
+        $patient_request = PatientRequest::find($id);
+        $patient_request->status = 1;
+        $patient_request->save();
+
+        return redirect()->route('doctor.requestList', $patient_request->patient_id);
     }
 }

@@ -27,7 +27,9 @@ Route::resource('doctor', 'DoctorController');
 
 Route::get('doc/dashboard', 'DoctorController@showDashboard')->name('doctor.dashboard');
 
-Route::get('doctor/{id}/patientList', 'DoctorController@getPatients')->name('doctor.list');
+Route::get('doctors/patientList', 'DoctorController@getPatients')->name('doctor.list');
+
+Route::get('doctors/patientList/{patient}/requestList', 'DoctorController@getPatientRequest')->name('doctor.requestList');
 
 Route::get('doctor/{id}/patientProfile', 'DoctorController@showPatient')->name('doctor.showPatient');
 
@@ -36,6 +38,8 @@ Route::get('/home', 'HomeController@index')->name('home');
 //Staff routes
 
 Route::get('staff/login', 'Staff\LoginController@showLoginForm')->name('staff.login');
+
+Route::get('staff/dashboard', 'StaffController@showDashboard')->name('staff.dashboard');
 
 Route::post('staff/login', 'Staff\LoginController@login')->name('staff.login');
 
@@ -97,4 +101,34 @@ Route::resource('patient', 'PatientController');
 
 Route::get('patient/adult/create', 'StaffController@registerAdult')->name('staff.registerAdult');
 
+Route::post('patient/adult/', 'StaffController@storeAdult')->name('staff.storeAdult');
+
 Route::get('patient/child/create', 'StaffController@registerChild')->name('staff.registerChild');
+
+Route::post('patient/child/', 'StaffController@storeChild')->name('staff.storeChild');
+
+Route::get('patient/child/sibling', 'SiblingController@create')->name('sibling.create');
+
+Route::post('patient/child/sibling', 'SiblingController@store')->name('sibling.store');
+
+Route::get('patient/{id}/request', 'StaffController@request')->name('patient.request');
+
+Route::get('patient/{id}/request/{request}', 'StaffController@postRequest')->name('patient.postRequest');
+
+Route::get('doctor/{id}/checkup', 'DoctorController@checkUp')->name('patient.checkUp');
+
+Route::get('doctor/{id}/request/maternity/{request}', 'MaternityController@createMaternity')->name('request.createMaternity');
+
+Route::post('doctor/{id}/request/maternity', 'MaternityController@postMaternity')->name('request.postMaternity');
+
+Route::get('doctor/{id}/request/prenatal/{request}', 'RequestController@createPrenatal')->name('request.createPrenatal');
+
+Route::post('doctor/{id}/request/prenatal', 'RequestController@storePrenatal')->name('request.storePrenatal');
+
+Route::get('doctor/{id}/request/prenatalCare/{request}', 'PrenatalCareController@createPrenatalCare')->name('request.createPrenatal');
+
+Route::post('doctor/{id}/request/prenatalCare/', 'PrenatalCareController@postPrenatalCare')->name('request.postPrenatal');
+
+Route::get('doctor/{id}/request/{request}/immunization/', 'ImmunizationController@createImmunization')->name('request.createImmunization');
+
+Route::post('doctor/{id}/request/immunization', 'ImmunizationController@postImmunization')->name('request.postImmunization');

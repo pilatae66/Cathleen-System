@@ -14,7 +14,6 @@ Patient List
 				<div class="box-header with-border">
 					<i class="fa fa-user-o"></i>
                     <h3 class="box-title">Patient List</h3>
-                    <div class="pull-right"><a href="{{ route('patient.create') }}" title="Register new Patient"><i class="fa fa-plus"></i></a></div>
 				</div>
 				<!-- /.box-header -->
 				<div class="box-body">
@@ -22,20 +21,17 @@ Patient List
 						<thead>
 							<tr>
 								<th>Patient Name</th>
+								<th>Patient Type</th>
 								<th>Actions</th>
 							</tr>
 						</thead>
 						<tbody>
                             @forelse ($patientList as $list)
 							<tr>
-                                <td><a class="text-black" href="{{ route('doctor.showPatient', $list->id) }}">{{ $list->fullName }}</a></td>
-                                <td>
-                                    <a class="btn btn-info btn-sm" href="{{ route('patient.edit', $list->id) }}"><i class="fa fa-edit"></i></a>
-									<form action="{{ route('patient.destroy', $list->id) }}" style="display:inline-block" method="post">
-                                            @csrf
-                                            <input type="hidden" name="_method" value="DELETE">
-                                            <button class="btn btn-danger btn-sm" type="submit"><i class="fa fa-trash"></i></button>
-                                        </form>
+                                <td><a class="text-black" href="{{ route('doctor.showPatient', $list->id) }}">{{ $list->firstname. " " . $list->middlename . " " . $list->lastname }}</a></td>
+                                <td>{{ $list->patient_type }}</td>
+                                    <td>
+										<a class="btn btn-success btn-sm" href="{{ route('doctor.requestList', $list->id) }}">Request <span class="badge bg-teal">{{ $list->count }}</span></a>
                                     </td>
                                 </tr>
                                 @empty
@@ -45,6 +41,7 @@ Patient List
                             <tfoot>
                                 <tr>
                                     <th>Patient Name</th>
+                                    <th>Patient Type</th>
                                     <th>Actions</th>
 							</tr>
 						</tfoot>

@@ -2,6 +2,9 @@
 <!-- sidebar menu: : style can be found in sidebar.less -->
 <ul class="sidebar-menu" data-widget="tree">
     <li class="header">STAFF NAVIGATION</li>
+    <li class="{{ Request::is('staff/dashboard') ? 'active' : '' }}">
+        <a href="{{ route('staff.dashboard') }}"><i class="fa fa-circle-o"></i> Dashboard</a>
+    </li>
     <li class="{{ Request::is('staffs/patient') ? 'active' : '' }}">
         <a href="{{ route('staff.getPatients') }}">
             <i class="fa fa-user-o"></i> <span>Patient List</span>
@@ -15,7 +18,6 @@
             </span>
         </a>
         <ul class="treeview-menu">
-            <li><a href="index.html"><i class="fa fa-circle-o"></i> Dashboard v1</a></li>
             <li class="active"><a href="index2.html"><i class="fa fa-circle-o"></i> Dashboard v2</a></li>
         </ul>
     </li> --}}

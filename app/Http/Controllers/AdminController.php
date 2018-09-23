@@ -164,7 +164,7 @@ class AdminController extends Controller
 
         $staff->save();
 
-        return redirect()->route('admin.staffIndex');
+        return redirect()->route('admins.staffIndex');
     }
 
     public function staffEdit(Staff $staff)
@@ -239,7 +239,7 @@ class AdminController extends Controller
 
         $midwife->save();
 
-        return redirect()->route('admin.midwifeIndex');
+        return redirect()->route('admins.midwifeIndex');
     }
 
     public function midwifeEdit(Doctor $doctor)

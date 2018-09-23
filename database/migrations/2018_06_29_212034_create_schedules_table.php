@@ -15,16 +15,9 @@ class CreateSchedulesTable extends Migration
     {
         Schema::create('schedules', function (Blueprint $table) {
             $table->increments('id');
-            $table->date('scheduleDate');
-            $table->time('scheduleTime');
-            $table->unsignedInteger('patientID');
-            $table->foreign('patientID')
-            ->references('id')->on('patients')
-            ->onDelete('cascade');
-            $table->unsignedInteger('doctorID');
-            $table->foreign('doctorID')
-            ->references('id')->on('doctors')
-            ->onDelete('cascade');
+            $table->date('schedule_date');
+            $table->time('schedule_time');
+            $table->unsignedInteger('patient_id');
             $table->timestamps();
         });
     }

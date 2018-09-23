@@ -32,14 +32,17 @@ Patient List
 						<thead>
 							<tr>
 								<th>Patient Name</th>
+								<th>Patient Type</th>
 								<th>Actions</th>
 							</tr>
 						</thead>
 						<tbody>
 							@forelse ($patients as $patient)
 							<tr>
-								<td><a class="text-black" href="{{ route('staff.showPatient', $patient->id) }}">{{ $patient->fullName }}</a></td>
+								<td><a class="text-black" href="{{ route('staff.showPatient', $patient->id) }}">{{ $patient->firstname. " " . $patient->middlename . " " . $patient->lastname }}</a></td>
+								<td>{{ $patient->patient_type }}</td>
 								<td>
+									<a class="btn btn-success btn-sm" href="{{ route('patient.request', $patient->id) }}">Request</a>
 									<a class="btn btn-info btn-sm" href="{{ route('patient.edit', $patient->id) }}"><i class="fa fa-edit"></i></a>
 									<form action="{{ route('patient.destroy', $patient->id) }}" style="display:inline-block" method="post">
 										@csrf
@@ -55,6 +58,7 @@ Patient List
 						<tfoot>
 							<tr>
 								<th>Patient Name</th>
+								<th>Patient Type</th>
 								<th>Actions</th>
 							</tr>
 						</tfoot>
