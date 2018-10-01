@@ -103,22 +103,6 @@ Staff
 								</div>
 							</div>
 						</div>
-						<div class="row">
-							<div class="col-md-4">
-								<div class="form-group {{ $errors->has('docID') ? 'has-error' : ''  }}">
-									<label for="docID">Doctor</label>
-									<select name="docID" id="docID" class="form-control">
-										<option value="{{ $patient->docID }}" hidden selected>Dr. {{ $patient->doctor->doctorLname }}</option>
-										@foreach ($doctors as $doctor)
-										<option value="{{ $doctor->id }}">Dr. {{ $doctor->doctorLname }}</option>
-										@endforeach
-									</select>
-									@if ( $errors->has('docID') )
-									<span class="help-block">{{ $errors->first('docID') }}</span>
-									@endif
-								</div>
-							</div>
-						</div>
 					</div>
 					<div class="box-footer">
 						<button class="btn btn-success" type="submit">Submit</button>

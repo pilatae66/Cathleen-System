@@ -27,12 +27,16 @@ Patient List
 							</tr>
 						</thead>
 						<tbody>
-							@foreach ($schedules as $schedule)
+							@forelse ($schedules as $schedule)
 								<tr>
 									<td>{{ $schedule->patient->fullName }}</td>
 									<td>{{ $schedule->service }}</td>
 								</tr>
-							@endforeach
+							@empty
+								<tr>
+									<td colspan="2" class="text-center">No schedule today!</td>
+								</tr>
+							@endforelse
 						</tbody>
 						<tfoot>
 							<tr>
