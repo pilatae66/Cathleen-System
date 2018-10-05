@@ -19,17 +19,9 @@
 
 					<h3 class="profile-username text-center">{{ $patient->fullName }}</h3>
 
-					<p class="text-muted text-center">{{ $patient->gender }}</p>
-
 					<ul class="list-group list-group-unbordered">
 						<li class="list-group-item">
-							<b>Contact Number:</b><br>&nbsp; <a class="">+63{{ $patient->contactNumber }}</a>
-						</li>
-						<li class="list-group-item">
-							<b>Address:</b><br>&nbsp; <a class="">{{ $patient->address }}</a>
-						</li>
-						<li class="list-group-item">
-							<b>Symptoms:</b><br>&nbsp; <a class="">{{ $patient->symptoms }}</a>
+							<b>Contact Number:</b><br>&nbsp; <a class="">{{ $patient->contact_number }}</a>
 						</li>
 					</ul>
 				</div>
@@ -42,37 +34,64 @@
 			<div class="box box-primary">
                 <div class="box-header">Patient's Health Record
                     <div class="box-tools pull-right">
-                        <a href="{{ route('healthRecord.create', $patient->id) }}"><i class="fa fa-plus"></i></a>
                     </div>
                 </div>
 				<div class="box-body">
 					<table id="example1" class="table table-bordered table-striped">
+					   
+						@if ($patient->patient_type == 'Child')
 						<thead>
-							<tr>
-								<th>Midwife</th>
-								<th>Status</th>
-								<th>Actions</th>
-							</tr>
-						</thead>
-						<tfoot>
-							<tr>
-								<th>Midwife</th>
-								<th>Status</th>
-								<th>Actions</th>
-							</tr>
-						</tfoot>
-						<tbody>
-							@foreach ($records as $record)
-							<tr>
-								<td><a style="color:black;" href="{{ route('doctor.dashboard') }}">{{ $record->doctor->doctorLname }}</a></td>
-								<td>{{ $record->status }}</td>
-								<td>
-									<a class="btn btn-success btn-sm" href="#"><i class="fa fa-edit"></i></a>
-									<a class="btn btn-danger btn-sm" href="#"><i class="fa fa-trash-o"></i></a>
-								</td>
-								</tr>
-								@endforeach
-							</tbody>
+							 <tr>
+								 <th>Services</th>
+								 <th>Date</th>
+								 <th>Actions</th>
+							 </tr>
+						 </thead>
+						 <tfoot>
+							 <tr>
+								 <th>Services</th>
+								 <th>Date</th>
+								 <th>Actions</th>
+							 </tr>
+						 </tfoot>
+						 <tbody>
+							 @foreach ($patient->immunization as $immune)
+								 <tr>
+									 <td>{{ strtoupper($immune->services) }}</td>
+									 <td>{{ Carbon\Carbon::parse($immune->date_of_visit)->toFormattedDateString() }}</td>
+									 <td>
+										 <a class="btn btn-sm btn-primary" href="{{ route('record.showImmune', $immune->id) }}">Show</a>
+									 </td>
+								 </tr>
+							 @endforeach
+						 </tbody>
+						 @elseif($patient->patient_type == 'Adult')
+							 <thead>
+								 <tr>
+									 <th>Services</th>
+									 <th>Date</th>
+									 <th>Actions</th>
+								 </tr>
+							 </thead>
+							 <tfoot>
+								 <tr>
+									 <th>Services</th>
+									 <th>Date</th>
+									 <th>Actions</th>
+								 </tr>
+							 </tfoot>
+							 <tbody>
+								 @foreach ($patient->prenatal as $prenatal)
+									 <tr>
+										 <td>Prenatal</td>
+										 <td>{{ Carbon\Carbon::parse($prenatal->date)->toFormattedDateString() }}</td>
+										 <td>
+											 <a class="btn btn-sm btn-primary" href="{{ route('record.show', $prenatal->id) }}">Show</a>
+										 </td>
+									 </tr>
+								 @endforeach
+							 </tbody>
+						@endif
 						</table>
 					</div>
 				</div>

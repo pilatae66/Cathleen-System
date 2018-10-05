@@ -18,14 +18,16 @@ Patient Request List
                         <div class="btn-group">
                             <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">Request</button>
                             <ul class="dropdown-menu" role="menu">
-                                @if ($patient->patient_type == 'Adult')
-                                    <li><a href="{{ route('patient.postRequest', ['id' => $patient->id, 'request' => 'Checkup']) }}">Checkup</a></li>
-                                    <li><a href="{{ route('patient.postRequest', ['id' => $patient->id, 'request' => 'Prenatal']) }}">Prenatal</a></li>
+								@if ($patient->patient_type == 'Adult')
+									@if ($patient->adult->gender == 'Female')
+										<li><a href="{{ route('patient.postRequest', ['id' => $patient->id, 'request' => 'Checkup']) }}">Checkup</a></li>
+										<li><a href="{{ route('staff.setSchedule', ['id' => $patient->id, 'request' => 'Prenatal']) }}">Prenatal</a></li>
+									@else
+										<li><a href="#">Checkup</a></li>
+									@endif
 								@elseif ($patient->patient_type == 'Child')
                                     <li><a href="{{ route('patient.postRequest', ['id' => $patient->id, 'request' => 'Checkup']) }}">Checkup</a></li>
                                     <li><a href="{{ route('patient.postRequest', ['id' => $patient->id, 'request' => 'Immunization']) }}">Immunization</a></li>
-                                @else
-                                    <li><a href="#">Checkup</a></li>
                                 @endif
                                 {{-- <li class="divider"></li>
                                 <li><a href="#">Separated link</a></li> --}}

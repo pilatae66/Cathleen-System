@@ -24,6 +24,7 @@ Patient List
 							<tr>
 								<td>Patient Name</td>
 								<td>Scheduled Services</td>
+								<td>Actions</td>
 							</tr>
 						</thead>
 						<tbody>
@@ -31,6 +32,14 @@ Patient List
 								<tr>
 									<td>{{ $schedule->patient->fullName }}</td>
 									<td>{{ $schedule->service }}</td>
+									<td>
+										<a href="{{ route('schedule.edit', $schedule->id) }}" class="btn btn-sm btn-primary">Edit</a>
+										<form action="{{ route('schedule.destroy', $schedule->id) }}" style="display:inline-block" method="post">
+											@csrf
+											<input type="hidden" name="_method" value="DELETE">
+											<button class="btn btn-danger btn-sm" type="submit">Delete</button>
+										</form>
+									</td>
 								</tr>
 							@empty
 								<tr>
@@ -42,6 +51,7 @@ Patient List
 							<tr>
 								<td>Patient Name</td>
 								<td>Scheduled Services</td>
+								<td>Actions</td>
 							</tr>
 						</tfoot>
 					</table>

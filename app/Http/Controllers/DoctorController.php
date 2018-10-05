@@ -10,6 +10,8 @@ use Illuminate\Http\Request;
 use App\AdultPatient;
 use App\ChildPatient;
 use App\PatientRequest;
+use App\PrenatalCare;
+use App\Immunization;
 
 class DoctorController extends Controller
 {
@@ -133,5 +135,17 @@ class DoctorController extends Controller
         $patient_request->save();
 
         return redirect()->route('doctor.requestList', $patient_request->patient_id);
+    }
+
+    public function showRecord($id)
+    {
+        $prenatal = PrenatalCare::find($id);
+        return view('doctor.showRecord', compact('prenatal'));
+    }
+
+    public function showRecordImm($id)
+    {
+        $immune = Immunization::find($id);
+        return view('doctor.showRecordImm', compact('immune'));
     }
 }

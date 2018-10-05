@@ -51,12 +51,20 @@ Route::get('staffs/patients', 'StaffController@getPatients')->name('staff.getPat
 
 Route::get('staff/patients/create', 'StaffController@addRecord')->name('staff.addRecord');
 
+Route::get('staff/patients/{patient}/getSchedule', 'StaffController@getSchedule')->name('staff.setSchedule');
+
+Route::post('staff/patients/{patient}/postSchedule', 'StaffController@postSchedule')->name('staff.postSchedule');
+
 
 Route::get('/home', 'HomeController@index')->name('home');
 
 //Health Record Routes
 
 Route::resource('healthRecord', 'HealthRecordController');
+
+Route::get('patient/{id}/showRecord', 'DoctorController@showRecord')->name('record.show');
+
+Route::get('patient/{id}/showRecordImm', 'DoctorController@showRecordImm')->name('record.showImmune');
 
 Route::get('healthRecord/{id}/create', 'HealthRecordController@create')->name('healthRecord.create');
 
@@ -132,3 +140,5 @@ Route::post('doctor/{id}/request/prenatalCare/', 'PrenatalCareController@postPre
 Route::get('doctor/{id}/request/{request}/immunization/', 'ImmunizationController@createImmunization')->name('request.createImmunization');
 
 Route::post('doctor/{id}/request/immunization', 'ImmunizationController@postImmunization')->name('request.postImmunization');
+
+Route::resource('schedule', 'ScheduleController');

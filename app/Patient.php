@@ -19,6 +19,16 @@ class Patient extends Model
         return $this->firstname . " " . $this->middlename. " " . $this->lastname;
     }
 
+    public function immunization()
+    {
+        return $this->hasMany(Immunization::class);
+    }
+
+    public function prenatal()
+    {
+        return $this->hasMany(PrenatalCare::class);
+    }
+
     public function doctor()
     {
         return $this->belongsTo(Doctor::class, 'docID', 'id');
@@ -27,6 +37,11 @@ class Patient extends Model
     public function child()
     {
         return $this->hasOne(ChildPatient::class);
+    }
+
+    public function adult()
+    {
+        return $this->hasOne(AdultPatient::class);
     }
     
     public function routeNotificationForKarix()

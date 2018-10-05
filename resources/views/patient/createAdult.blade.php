@@ -26,7 +26,7 @@ Patient
 									<div class="col-md-6">
 										<div class="form-group {{ $errors->has('arrival') ? 'has-error' : ''  }}">
 											<label for="arrival">Date/Time of Arrival</label>
-											<input type="text" name="arrival" id="arrival" class="form-control">
+											<input type="text" name="arrival" id="arrival" class="form-control datepicker">
 											@if ( $errors->has('arrival') )
 											<span class="help-block">{{ $errors->first('arrival') }}</span>
 											@endif
@@ -35,7 +35,7 @@ Patient
 									<div class="col-md-6">
 										<div class="form-group {{ $errors->has('disposition') ? 'has-error' : ''  }}">
 											<label for="disposition">Time of Disposition</label>
-											<input type="text" name="disposition" id="disposition" class="form-control">
+											<input type="text" name="disposition" id="disposition" class="form-control timepicker">
 											@if ( $errors->has('disposition') )
 											<span class="help-block">{{ $errors->first('disposition') }}</span>
 											@endif
@@ -73,7 +73,7 @@ Patient
 									<div class="col-md-4">
 										<div class="form-group {{ $errors->has('dob') ? 'has-error' : ''  }}">
 											<label>Date of Birth</label>
-											<input type="text" class="form-control" name="dob" id="datepicker" placeholder="Choose Birth Date">
+											<input type="text" class="form-control datepicker" name="dob" id="datepicker" placeholder="Choose Birth Date">
 
 										</div>
 										<!-- /.form group -->

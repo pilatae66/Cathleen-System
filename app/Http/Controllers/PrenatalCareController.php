@@ -129,7 +129,7 @@ class PrenatalCareController extends Controller
         $prenatalCare->pelvic = $request->pelvis;
         $prenatalCare->urinary_tract = $request->urinary;
         $prenatalCare->assessment = $request->assessment;
-        $prenatalCare->plans = $request->plans;
+        $prenatalCare->referal = $request->plans;
         $prenatalCare->patient_id = $id;
         $prenatalCare->save();
 
@@ -145,7 +145,7 @@ class PrenatalCareController extends Controller
         $schedule->service = 'Prenatal';
         $schedule->save();
 
-        $message = "From Tominobo Health Center:\r\n\r\nGood Day!\r\n\r\nYou're schedule for your next prenatal is on ". $schedule->schedule_date->toFormattedDateString() .".\r\n\r\nFailure to attend the said schedule will be subject to cancelation.\r\n\r\nThank you!";
+        $message = "From Tominobo Health Center:\r\n\r\nGood Day!\r\n\r\nYou're schedule for your next prenatal is on ". $schedule->schedule_date->toFormattedDateString() .".\r\n\r\nFailure to attend the said schedule will be subject to cancelation.\r\n\r\nIf you want a diffirent schedule contact this number ".Auth::user()->contactNumber." and state the schedule that you want.\r\n\r\nThank you!";
         $adult->notify(new ScheduleNotification($message));
 
         return redirect()->route('doctor.requestList', $id);

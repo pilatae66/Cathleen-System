@@ -25,7 +25,7 @@ Staff
 										<input type="hidden" name="_method" value="PATCH">
 										<div class="form-group {{ $errors->has('firstname') ? 'has-error' : ''  }}">
 											<label for="firstname">Firstname</label>
-											<input type="text" value="{{ $patient->firstName }}" name="firstname" id="firstname" class="form-control" placeholder="Enter Firstname">
+											<input type="text" value="{{ $patient->firstname }}" name="firstname" id="firstname" class="form-control" placeholder="Enter Firstname">
 											@if ( $errors->has('firstname') )
 											<span class="help-block">{{ $errors->first('firstname') }}</span>
 											@endif
@@ -34,7 +34,7 @@ Staff
 									<div class="col-md-6">
 										<div class="form-group {{ $errors->has('middlename') ? 'has-error' : ''  }}">
 											<label for="middlename">Middlename</label>
-											<input type="text" value="{{ $patient->middleName }}" name="middlename" id="middlename" class="form-control" placeholder="Enter Middlename">
+											<input type="text" value="{{ $patient->middlename }}" name="middlename" id="middlename" class="form-control" placeholder="Enter Middlename">
 											@if ( $errors->has('middlename') )
 											<span class="help-block">{{ $errors->first('middlename') }}</span>
 											@endif
@@ -45,60 +45,35 @@ Staff
 									<div class="col-md-6">
 										<div class="form-group {{ $errors->has('lastname') ? 'has-error' : ''  }}">
 											<label for="lastname">Lastname</label>
-											<input type="text" value="{{ $patient->lastName }}" name="lastname" id="lastname" class="form-control" placeholder="Enter Lastname">
+											<input type="text" value="{{ $patient->lastname }}" name="lastname" id="lastname" class="form-control" placeholder="Enter Lastname">
 											@if ( $errors->has('lastname') )
 											<span class="help-block">{{ $errors->first('lastname') }}</span>
 											@endif
 										</div>
 									</div>
 									<div class="col-md-6">
-										<div class="form-group {{ $errors->has('contactNumber') ? 'has-error' : ''  }}">
-											<label for="contactNumber">Contact Number</label>
-											<input type="number" value="{{ $patient->contactNumber }}" name="contactNumber" id="contactNumber" class="form-control" placeholder="Enter Contact Number">
-											@if ( $errors->has('contactNumber') )
-											<span class="help-block">{{ $errors->first('contactNumber') }}</span>
+										<div class="form-group {{ $errors->has('contact_number') ? 'has-error' : ''  }}">
+											<label for="contact_number">Contact Number</label>
+											<input type="text" value="{{ $patient->contact_number }}" name="contact_number" id="contact_number" class="form-control" placeholder="Enter Contact Number">
+											@if ( $errors->has('contact_number') )
+											<span class="help-block">{{ $errors->first('contact_number') }}</span>
 											@endif
 										</div>
 									</div>
 								</div>
 							</div>
-							<div class="col-md-4">
-								<div class="image text-center">
-									<img class="img-circle" src="{{ asset('storage/CCS.png') }}" alt="Picture" height="140px" width="140px" />
-								</div>
-							</div>
 						</div>
 						<div class="row">
 							<div class="col-md-4">
-								<div class="form-group {{ $errors->has('gender') ? 'has-error' : ''  }}">
-									<label for="gender">Gender</label>
-									<select name="gender" id="gender" class="form-control">
-										<option value="{{ $patient->gender }}" hidden selected> {{ $patient->gender }}</option>
-										<option value="Male">Male</option>
-										<option value="Female">Female</option>
+								<div class="form-group {{ $errors->has('patient_type') ? 'has-error' : ''  }}">
+									<label for="patient_type">Patient Type</label>
+									<select name="patient_type" id="patient_type" class="form-control">
+										<option value="{{ $patient->patient_type }}" hidden selected> {{ $patient->patient_type }}</option>
+										<option value="Child">Child</option>
+										<option value="Adult">Adult</option>
 									</select>
-									@if ( $errors->has('gender') )
-									<span class="help-block">{{ $errors->first('gender') }}</span>
-									@endif
-								</div>
-							</div>
-							<div class="col-md-8">
-								<div class="form-group {{ $errors->has('address') ? 'has-error' : ''  }}">
-									<label for="address">Address</label>
-									<input type="text" value="{{ $patient->address }}" name="address" id="address" class="form-control" placeholder="Enter Address">
-									@if ( $errors->has('address') )
-									<span class="help-block">{{ $errors->first('address') }}</span>
-									@endif
-								</div>
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-md-12">
-								<div class="form-group {{ $errors->has('symptoms') ? 'has-error' : ''  }}">
-									<label for="symptoms">Symptoms</label>
-									<textarea name="symptoms" class="form-control" rows="3" placeholder="Enter Symptoms">{{ $patient->symptoms }}</textarea>
-									@if ( $errors->has('symptoms') )
-									<span class="help-block">{{ $errors->first('symptoms') }}</span>
+									@if ( $errors->has('patient_type') )
+									<span class="help-block">{{ $errors->first('patient_type') }}</span>
 									@endif
 								</div>
 							</div>

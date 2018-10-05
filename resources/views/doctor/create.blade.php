@@ -53,7 +53,7 @@ Staff
 									<div class="col-md-6">
 										<div class="form-group {{ $errors->has('contactNumber') ? 'has-error' : ''  }}">
 											<label for="contactNumber">Contact Number</label>
-											<input type="number" name="contactNumber" id="contactNumber" class="form-control" placeholder="Enter Contact Number">
+											<input type="text" name="contactNumber" id="contactNumber" class="form-control" placeholder="Enter Contact Number">
 											@if ( $errors->has('contactNumber') )
 											<span class="help-block">{{ $errors->first('contactNumber') }}</span>
 											@endif

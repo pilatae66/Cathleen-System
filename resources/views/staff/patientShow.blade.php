@@ -23,13 +23,7 @@
 
             <ul class="list-group list-group-unbordered">
               <li class="list-group-item">
-                <b>Contact Number:</b><br>&nbsp; <a class="">+63{{ $patient->contactNumber }}</a>
-              </li>
-              <li class="list-group-item">
-                <b>Address:</b><br>&nbsp; <a class="">{{ $patient->address }}</a>
-              </li>
-              <li class="list-group-item">
-                <b>Symptoms:</b><br>&nbsp; <a class="">{{ $patient->symptoms }}</a>
+                <b>Contact Number:</b><br>&nbsp; <a class="">{{ $patient->contact_number }}</a>
               </li>
             </ul>
           </div>
@@ -42,31 +36,53 @@
         <div class="box box-primary">
             <div class="box-header">
                 <h5 class="box-title">Health Records</h5>
-                <a class="btn btn-default pull-right" href="{{ route('staff.addRecord') }}">Add Symptoms</a>
             </div>
             <div class="box-body">
                 <table id="example1" class="table table-bordered table-striped">
-                    <thead>
+                    
+                   @if ($patient->patient_type == 'Child')
+                   <thead>
                         <tr>
-                            <th>Midwife</th>
-                            <th>Diagnosis</th>
-                            <th>Actions</th>
+                            <th>Services</th>
+                            <th>Date</th>
                         </tr>
                     </thead>
                     <tfoot>
                         <tr>
-                            <th>Midwife</th>
-                            <th>Diagnosis</th>
-                            <th>Actions</th>
+                            <th>Services</th>
+                            <th>Date</th>
                         </tr>
                     </tfoot>
-                    {{-- <tbody>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                    </tbody> --}}
+                    <tbody>
+                        @foreach ($patient->immunization as $immune)
+                            <tr>
+                                <td>{{ strtoupper($immune->services) }}</td>
+                                <td>{{ Carbon\Carbon::parse($immune->date_of_visit)->toFormattedDateString() }}</td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                    @elseif($patient->patient_type == 'Adult')
+                        <thead>
+                            <tr>
+                                <th>Services</th>
+                                <th>Date</th>
+                            </tr>
+                        </thead>
+                        <tfoot>
+                            <tr>
+                                <th>Services</th>
+                                <th>Date</th>
+                            </tr>
+                        </tfoot>
+                        <tbody>
+                            @foreach ($patient->prenatal as $prenatal)
+                                <tr>
+                                    <td>Prenatal</td>
+                                    <td>{{ Carbon\Carbon::parse($prenatal->date)->toFormattedDateString() }}</td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                   @endif
                 </table>
             </div>
         </div>

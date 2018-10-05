@@ -115,40 +115,46 @@ class ImmunizationController extends Controller
 
         $child = Patient::find($patient_request->patient_id);
 
-        $schedule = new Schedule;
-        $schedule->patient_id = $id;
-        $schedule->service = $request->service;
-        $schedule->save();
         
         if ($immune->services == 'dpt' || $immune->services == 'opv' || $immune->services == 'hepa') {
             $immune_count = Immunization::where('patient_id', $id)->count();
             // return $immune_count;
             switch ($immune_count) {
                 case 1:
-                    $schedule = Carbon::parse($child->child->dob)->addDays(42)->toFormattedDateString();
-                    $message = "From Tominobo Health Center:\r\n\r\nGood Day!\r\n\r\nThe next shot schedule for your child is on ". $schedule .".\r\n\r\nFailure to attend the said schedule will be subject to cancelation.\r\n\r\nThank you!";
-                    $schedule->schedule_date = $schedule;
+                    $schedule = new Schedule;
+                    $schedule->patient_id = $id;
+                    $schedule->service = $request->services;
+                    // return Carbon::parse($schedule)->toDateString();
+                    $schedule->schedule_date = Carbon::parse($child->child->dob)->addDays(42)->toDateString();
                     $schedule->save();
                     
                     // return $message;
+                    $schedule = Carbon::parse($child->child->dob)->addDays(42)->toFormattedDateString();
+                    $message = "From Tominobo Health Center:\r\n\r\nGood Day!\r\n\r\nThe next shot schedule for your child is on ". $schedule .".\r\n\r\nFailure to attend the said schedule will be subject to cancelation.\r\n\r\nIf you want a diffirent schedule contact this number ".Auth::user()->contactNumber." and state the schedule that you want.\r\n\r\nThank you!";
                     $child->notify(new ScheduleNotification($message));
                     break;
                 
                 case 2:
-                    $schedule = Carbon::parse($child->child->dob)->addDays(70)->toFormattedDateString();
-                    $message = "From Tominobo Health Center:\r\n\r\nGood Day!\r\n\r\nThe next shot schedule for your child is on ". $schedule .".\r\n\r\nFailure to attend the said schedule will be subject to cancelation.\r\n\r\nThank you!";
-                    $schedule->schedule_date = $schedule;
+                    $schedule = new Schedule;
+                    $schedule->patient_id = $id;
+                    $schedule->service = $request->services;
+                    $schedule->schedule_date = Carbon::parse($child->child->dob)->addDays(70)->toDateString();
                     $schedule->save();
                     
+                    $schedule = Carbon::parse($child->child->dob)->addDays(70)->toFormattedDateString();
+                    $message = "From Tominobo Health Center:\r\n\r\nGood Day!\r\n\r\nThe next shot schedule for your child is on ". $schedule .".\r\n\r\nFailure to attend the said schedule will be subject to cancelation.\r\n\r\nIf you want a diffirent schedule contact this number ".Auth::user()->contactNumber." and state the schedule that you want.\r\n\r\nThank you!";
                     $child->notify(new ScheduleNotification($message));
                     break;
                 
                 case 3:
-                    $schedule = Carbon::parse($child->child->dob)->addDays(98)->toFormattedDateString();
-                    $message = "From Tominobo Health Center:\r\n\r\nGood Day!\r\n\r\nThe next shot schedule for your child is on ". $schedule .".\r\n\r\nFailure to attend the said schedule will be subject to cancelation.\r\n\r\nThank you!";
-                    $schedule->schedule_date = $schedule;
+                    $schedule = new Schedule;
+                    $schedule->patient_id = $id;
+                    $schedule->service = $request->services;
+                    $schedule->schedule_date = Carbon::parse($child->child->dob)->addDays(98)->toDateString();
                     $schedule->save();
                     
+                    $schedule = Carbon::parse($child->child->dob)->addDays(98)->toFormattedDateString();
+                    $message = "From Tominobo Health Center:\r\n\r\nGood Day!\r\n\r\nThe next shot schedule for your child is on ". $schedule .".\r\n\r\nFailure to attend the said schedule will be subject to cancelation.\r\n\r\nIf you want a diffirent schedule contact this number ".Auth::user()->contactNumber." and state the schedule that you want.\r\n\r\nThank you!";
                     $child->notify(new ScheduleNotification($message));
                     break;
                 

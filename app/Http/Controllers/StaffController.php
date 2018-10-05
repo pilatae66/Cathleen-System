@@ -13,6 +13,7 @@ use App\Maternity;
 use App\PrenatalCare;
 use App\PatientRequest;
 use App\Schedule;
+use App\Notifications\ScheduleNotification;
 
 class StaffController extends Controller
 {
@@ -306,5 +307,24 @@ class StaffController extends Controller
         $patient_request->save();
 
         return redirect()->route('patient.request', $id);
+    }
+
+    public function getSchedule(Patient $patient)
+    {
+        return view('staff.setSchedule', compact('patient'));
+    }
+
+    public function postSchedule(Patient $patient, Request $request)
+    {
+        $schedule = new Schedule;
+        $schedule->schedule_date = $request->date;
+        $schedule->service = 'Prenatal';
+        $schedule->patient_id = $patient->id;
+        $schedule->save();
+
+        $message = "From Tominobo Health Center:\r\n\r\nGood Day!\r\n\r\nYou're schedule for your prenatal is on ". Carbon::parse($schedule->schedule_date)->toFormattedDateString() .".\r\n\r\nFailure to attend the said schedule will be subject to cancelation.\r\n\r\nThank you!";
+        $patient->notify(new ScheduleNotification($message));
+
+        return redirect()->route('patient.postRequest', ['id'=>$patient->id, 'request'=>'Prenatal']);
     }
 }

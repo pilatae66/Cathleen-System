@@ -63,9 +63,9 @@ class PatientController extends Controller
         ]);
 
         $patient = new Patient;
-        $patient->firstName = $request->firstname;
-        $patient->middleName = $request->middlename;
-        $patient->lastName = $request->lastname;
+        $patient->firstname = $request->firstname;
+        $patient->middlename = $request->middlename;
+        $patient->lastname = $request->lastname;
         $patient->gender = $request->gender;
         $patient->civilStatus = $request->civilStatus;
         $patient->birthDate = $request->birthDate;
@@ -82,7 +82,7 @@ class PatientController extends Controller
 
         $patient->save();
 
-        return redirect('patient');
+        return redirect('staff.getPatients');
     }
 
     /**
@@ -104,9 +104,8 @@ class PatientController extends Controller
      */
     public function edit(Patient $patient)
     {
-        $doctors = Doctor::all();
 
-        return view('patient.edit', compact('patient', 'doctors'));
+        return view('patient.edit', compact('patient'));
     }
 
     /**
@@ -122,26 +121,19 @@ class PatientController extends Controller
             'firstname' => 'required|string|max:255',
             'middlename' => 'required|string|max:255',
             'lastname' => 'required|string|max:255',
-            'gender' => 'required|string|max:255',
-            'symptoms' => 'required|string|max:255',
-            'contactNumber' => 'required|numeric',
-            'address' => 'required|string|max:255',
-            'docID' => 'required|numeric',
+            'patient_type' => 'required|string|max:255',
+            'contact_number' => 'required|string',
         ]);
 
         $patient->firstName = $request->firstname;
         $patient->middleName = $request->middlename;
         $patient->lastName = $request->lastname;
-        $patient->gender = $request->gender;
-        $patient->contactNumber = $request->contactNumber;
-        $patient->symptoms = $request->symptoms;
-        $patient->address = $request->address;
-        $patient->docID = $request->docID;
-        $patient->staffID = Auth::user()->id;
+        $patient->patient_type = $request->patient_type;
+        $patient->contact_number = $request->contact_number;
 
         $patient->save();
 
-        return redirect('patient');
+        return redirect()->route('staff.getPatients');
     }
 
     /**
