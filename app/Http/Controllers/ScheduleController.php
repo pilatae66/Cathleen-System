@@ -96,5 +96,7 @@ class ScheduleController extends Controller
         $message = "From Tominobo Health Center:\r\n\r\nGood Day!\r\n\r\nYour schedule on ". Carbon::parse($schedule->schedule_date)->toFormattedDateString() ." has been canceled by ". Auth::user()->fullName .".\r\n\r\nIf you did not initiate this cancelation please contact this number ".Auth::user()->contactNumber.".\r\n\r\nThank you!";
         $schedule->delete();
         $patient->notify(new ScheduleNotification($message));
+
+        return redirect()->route('staff.dashboard');
     }
 }
